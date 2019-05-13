@@ -66,6 +66,7 @@ for(let [i, [key, value]] of Object.entries(Object.entries(siteContent["cta"])))
 }
 
 let main_content_elments = document.querySelectorAll(".main-content > div > div > *, .main-content img");
+console.log(main_content_elments);
 for(let [i, [key, value]] of Object.entries(Object.entries(siteContent["main-content"]))) {
   if(i == 4){
     main_content_elments[i].setAttribute('src', value);
