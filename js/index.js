@@ -38,5 +38,46 @@ const siteContent = {
 };
 
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+// let logo = document.getElementById("logo-img");
+// logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+// let cta_img = document.getElementById("cta-img");
+// cta_img.setAttribute('src', siteContent["cta"]["img-src"])
+// let cta_h1 = document.querySelector(".cta-text h1");
+// cta_h1.innerHTML = siteContent["cta"]["h1"];
+
+// let cta_button = document.querySelector(".cta-text button");
+// cta_button.innerHTML = siteContent["cta"]["button"];
+let nav_elments = document.querySelectorAll("header nav > a, header img");
+// console.log(Object.entries(Object.entries(siteContent["nav"])));
+for(let [i, [key, value]] of Object.entries(Object.entries(siteContent["nav"]))) {
+  if(i == 6){
+    nav_elments[i].setAttribute('src', value);
+  }
+  nav_elments[i].innerHTML = value;
+}
+
+let cta_elments = document.querySelectorAll(".cta .cta-text > *, .cta img");
+for(let [i, [key, value]] of Object.entries(Object.entries(siteContent["cta"]))) {
+  if(i == 2){
+    cta_elments[i].setAttribute('src', value);
+  }
+  cta_elments[i].innerHTML = value;
+}
+
+let main_content_elments = document.querySelectorAll(".main-content > div > div > *, .main-content img");
+for(let [i, [key, value]] of Object.entries(Object.entries(siteContent["main-content"]))) {
+  if(i == 4){
+    main_content_elments[i].setAttribute('src', value);
+  }
+  main_content_elments[i].innerHTML = value;
+}
+
+let contact_elments = document.querySelectorAll(".contact > *");
+// console.log(contact_elments);
+for(let [i, [key, value]] of Object.entries(Object.entries(siteContent["contact"]))) {
+  contact_elments[i].innerHTML = value;
+}
+
+let footer = document.querySelector("footer p");
+footer.innerHTML = siteContent["footer"]["copyright"];
