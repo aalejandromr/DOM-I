@@ -81,3 +81,52 @@ for(let [i, [key, value]] of Object.entries(Object.entries(siteContent["contact"
 
 let footer = document.querySelector("footer p");
 footer.innerHTML = siteContent["footer"]["copyright"];
+
+document.querySelectorAll("nav a").forEach(item => item.style.cssText = "color: green");
+
+let insert_in = [["a", "sauvage"], ["a", "idea"]]
+
+for(let [index, value] of Object.entries(insert_in))
+{
+  let newA = document.createElement(value[0]); // Create anchor node
+  let newContent = document.createTextNode(value[1]); // Create Text node
+  newA.appendChild(newContent); // Append the text node to the new element (node)
+  newA.style.cssText = "color: green"; // style node before appending to nav
+  document.querySelector("nav").appendChild(newA); // append new anchor node at the end of nav
+  // console.log(value[0]);
+}
+
+// Add button at the top of the first section with the class of .main-content
+(function addFirstButton(){
+  let button = document.createElement("button");
+  let buttonText = document.createTextNode("Duplicate Section");
+  button.appendChild(buttonText);
+
+  button.addEventListener("click", duplicateMainContent)
+  document.querySelector(".main-content").append(button);
+})();
+
+function duplicateMainContent(){
+  // console.log(this);
+  // Get button's parent (section)
+  // var p = document.getElementById("para1");
+// var p_prime = p.cloneNode(true);
+  let original_section = this.parentElement;
+  let section_cloned = original_section.cloneNode(true);
+  let cloned_button = section_cloned.querySelector("button");
+  cloned_button.innerHTML = "Delete section";
+  cloned_button.addEventListener("click", deleteMainContent);
+
+  let button = document.createElement("button");
+  let buttonText = document.createTextNode("Duplicate Section");
+  button.appendChild(buttonText);
+
+  button.addEventListener("click", duplicateMainContent)
+  section_cloned.append(button);
+  original_section.parentNode.insertBefore(section_cloned, original_section.nextSibling);
+}
+
+function deleteMainContent(){
+  let original_section = this.parentElement;
+  original_section.remove();
+}
